@@ -2,16 +2,24 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #1a237e;
+    background-color: #000;
+   background-image: 
+    url('https://www.transparenttextures.com/patterns/stardust.png'),
+    radial-gradient(ellipse at center, rgb(2, 15, 46) 0%, rgb(0, 1, 8) 100%);
   padding: 0 2rem;
   height: 70px;
   color: white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-
   font-family: 'Libertinus', serif;
+  transition: all 0.4s ease;
+  animation: slideDown 0.6s ease-out;
+}
 
-  /* --- ADD THIS LINE FOR THE ANIMATION --- */
-  animation: slideDown 0.5s ease-out;
+
+
+/* When scrolled */
+.navbar.scrolled {
+  background: #0d133c;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .navbar-brand {
@@ -22,11 +30,11 @@
 }
 
 .navbar-links {
-  display: flex; /* Arrange links horizontally */
+  display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 2rem; /* Space between links */
+  gap: 2rem;
 }
 
 .navbar-links li a {
@@ -34,30 +42,44 @@
   text-decoration: none;
   padding: 0.5rem 0;
   position: relative;
-  transition: color 0.2s;
+  transition: color 0.3s ease;
+}
+
+/* Hover underline animation */
+.navbar-links li a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background-color: #ff8f00;
+  border-radius: 2px;
+  transition: width 0.3s ease;
 }
 
 .navbar-links li a:hover {
   color: white;
 }
 
-/* Style for the active page link */
+.navbar-links li a:hover::after {
+  width: 100%;
+}
+
+/* Active page link */
 .navbar-links li a.active {
   color: white;
   font-weight: bold;
 }
 
-/* Underline effect for active link */
 .navbar-links li a.active::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
   width: 100%;
   height: 3px;
   background-color: #ff8f00;
   border-radius: 2px;
 }
+
+/* Keyframes */
 @keyframes slideDown {
   from {
     transform: translateY(-100%);
@@ -65,4 +87,19 @@
   to {
     transform: translateY(0);
   }
+}
+
+.navbar a {
+  color: #fff;
+  margin: 0 1rem;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Neon Glow Hover */
+.navbar a:hover {
+  color: #00e5ff;
+  text-shadow: 0 0 5px #00e5ff, 0 0 10px #00e5ff, 0 0 20px #00e5ff;
 }
