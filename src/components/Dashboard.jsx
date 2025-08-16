@@ -14,6 +14,7 @@ const Dashboard = ({ expenses }) => {
       <div>
         <h1>Dashboard</h1>
         <div className="card"><h2>No expenses recorded yet.</h2></div>
+        <div><h3>Arsad is madarchod </h3></div>
       </div>
     );
   }
