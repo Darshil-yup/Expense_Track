@@ -1,82 +1,179 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './AuthPage.css'; // We will create this new CSS file
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./AuthPage.css";
 
-const AuthPage = ({ onLogin, onSignup }) => {
-  const [isFlipped, setIsFlipped] = useState(false);
-  
-  // State for Login form
-  const [loginEmail, setLoginEmail] = useState('');
-  const [loginPassword, setLoginPassword] = useState('');
+// Assuming you have these images in your public/img folder
+const log_svg = 'public/img/log.svg';
+const register_svg = 'public/img/register.svg';
 
-  // State for Signup form
-  const [signupName, setSignupName] = useState('');
-  const [signupEmail, setSignupEmail] = useState('');
-  const [signupPassword, setSignupPassword] = useState('');
 
+const AuthPage = ({ onLogin }) => {
+  const [isSignUpMode, setIsSignUpMode] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = (event) => {
-    event.preventDefault();
+  // States for the Sign In form
+  const [signInEmail, setSignInEmail] = useState('');
+  const [signInPassword, setSignInPassword] = useState('');
+
+  // States for the Sign Up form
+  const [signUpName, setSignUpName] = useState('');
+  const [signUpEmail, setSignUpEmail] = useState('');
+  const [signUpPassword, setSignUpPassword] = useState('');
+
+  // Add these two lines with your other useState hooks
+  const [showSignInPassword, setShowSignInPassword] = useState(false);
+  const [showSignUpPassword, setShowSignUpPassword] = useState(false);
+
+  const handleSignUpClick = () => setIsSignUpMode(true);
+  const handleSignInClick = () => setIsSignUpMode(false);
+
+  // --- LOGIN LOGIC ---
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    console.log("Login submitted...");
+
     const users = JSON.parse(localStorage.getItem('users')) || [];
-    const foundUser = users.find(user => user.email === loginEmail && user.password === loginPassword);
+    const foundUser = users.find(user => user.email === signInEmail && user.password === signInPassword);
+
     if (foundUser) {
-      onLogin(foundUser);
-      navigate('/profile');
+      console.log("✅ User found:", foundUser);
+      if (typeof onLogin === 'function') {
+        onLogin(foundUser);
+        console.log("Navigating to /profile...");
+        navigate('/profile');
+      } else {
+        console.error("🚨 'onLogin' prop is not a function!");
+        alert("Login failed: App is not configured correctly.");
+      }
     } else {
+      console.log("❌ User not found or password incorrect.");
       alert('Invalid email or password!');
     }
   };
 
-  const handleSignup = (event) => {
-    event.preventDefault();
+  // --- SIGNUP LOGIC ---
+  const handleSignUpSubmit = (e) => {
+    e.preventDefault();
+    console.log("Signup submitted...");
+
     const users = JSON.parse(localStorage.getItem('users')) || [];
-    const userExists = users.some(user => user.email === signupEmail);
+    const userExists = users.some(user => user.email === signUpEmail);
+
     if (userExists) {
       alert('An account with this email already exists!');
       return;
     }
-    const newUser = { name: signupName, email: signupEmail, password: signupPassword };
+
+    const newUser = { name: signUpName, email: signUpEmail, password: signUpPassword };
     users.push(newUser);
     localStorage.setItem('users', JSON.stringify(users));
+
     alert('Signup successful! Please log in to continue.');
-    setIsFlipped(false); // Flip back to the login form
+    setIsSignUpMode(false); // Switch to the sign-in panel
   };
 
   return (
-    <div className="auth-page-container">
-      <div className={`flip-card ${isFlipped ? 'is-flipped' : ''}`}>
-        <div className="flip-card-inner">
-          {/* Front of the card (Login) */}
-          <div className="flip-card-front">
-            <div className="auth-form-card">
-              <h2>Welcome Back!</h2>
-              <form className="auth-form" onSubmit={handleLogin}>
-                <input type="email" placeholder="Email" value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} required />
-                <input type="password" placeholder="Password" value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} required />
-                <button type="submit">Login</button>
-              </form>
-              <span className="form-footer">
-                Don't have an account? <button onClick={() => setIsFlipped(true)} className="flip-button">Sign Up</button>
-              </span>
+    <div className={`container ${isSignUpMode ? "sign-up-mode" : ""}`}>
+      <div className="forms-container">
+        <div className="signin-signup">
+          {/* Sign In Form with working logic */}
+          <form action="#" className="sign-in-form" onSubmit={handleLoginSubmit}>
+            <h2 className="title">Sign in</h2>
+            <div className="input-field">
+              <i className="fas fa-envelope"></i>
+              <input 
+                type="email" 
+                placeholder="Email" 
+                value={signInEmail}
+                onChange={(e) => setSignInEmail(e.target.value)}
+                required
+              />
             </div>
-          </div>
+            <div className="input-field">
+              <i className="fas fa-lock"></i>
+              <input 
+                type={showSignInPassword ? "text" : "password"} // Dynamic type
+                placeholder="Password" 
+                value={signInPassword}
+                onChange={(e) => setSignInPassword(e.target.value)}
+                required
+              />
+              <i 
+                className={`fas ${showSignInPassword ? "fa-eye-slash" : "fa-eye"} eye-icon`}
+                onClick={() => setShowSignInPassword(!showSignInPassword)}
+              ></i>
+            </div>
+            <input type="submit" value="Login" className="btn solid" />
+          </form>
 
-          {/* Back of the card (Signup) */}
-          <div className="flip-card-back">
-            <div className="auth-form-card">
-              <h2>Create Account</h2>
-              <form className="auth-form" onSubmit={handleSignup}>
-                <input type="text" placeholder="Full Name" value={signupName} onChange={(e) => setSignupName(e.target.value)} required />
-                <input type="email" placeholder="Email" value={signupEmail} onChange={(e) => setSignupEmail(e.target.value)} required />
-                <input type="password" placeholder="Password" value={signupPassword} onChange={(e) => setSignupPassword(e.target.value)} required />
-                <button type="submit">Sign Up</button>
-              </form>
-              <span className="form-footer">
-                Already have an account? <button onClick={() => setIsFlipped(false)} className="flip-button">Login</button>
-              </span>
+          {/* Sign Up Form with working logic */}
+          <form action="#" className="sign-up-form" onSubmit={handleSignUpSubmit}>
+            <h2 className="title">Sign up</h2>
+            <div className="input-field">
+              <i className="fas fa-user"></i>
+              <input 
+                type="text" 
+                placeholder="Username" 
+                value={signUpName}
+                onChange={(e) => setSignUpName(e.target.value)}
+                required
+              />
             </div>
+            <div className="input-field">
+              <i className="fas fa-envelope"></i>
+              <input 
+                type="email" 
+                placeholder="Email" 
+                value={signUpEmail}
+                onChange={(e) => setSignUpEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className="input-field">
+              <i className="fas fa-lock"></i>
+              <input 
+                type={showSignUpPassword ? "text" : "password"} // Dynamic type
+                placeholder="Password" 
+                value={signUpPassword}
+                onChange={(e) => setSignUpPassword(e.target.value)}
+                required
+              />
+              <i 
+                className={`fas ${showSignUpPassword ? "fa-eye-slash" : "fa-eye"} eye-icon`}
+                onClick={() => setShowSignUpPassword(!showSignUpPassword)}
+              ></i>
+            </div>
+            <input type="submit" className="btn" value="Sign up" />
+          </form>
+        </div>
+      </div>
+
+      <div className="panels-container">
+        <div className="panel left-panel">
+          <div className="content">
+            <h3>New here ?</h3>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
+              ex ratione. Aliquid!
+            </p>
+            <button className="btn transparent" onClick={handleSignUpClick}>
+              Sign up
+            </button>
           </div>
+          <img src={log_svg} className="image" alt="Sign up illustration" />
+        </div>
+        <div className="panel right-panel">
+          <div className="content">
+            <h3>One of us ?</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
+              laboriosam ad deleniti.
+            </p>
+            <button className="btn transparent" onClick={handleSignInClick}>
+              Sign in
+            </button>
+          </div>
+          <img src={register_svg} className="image" alt="Sign in illustration" />
         </div>
       </div>
     </div>
