@@ -1,0 +1,77 @@
+
+
+/* src/index.css */
+
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f0f2f5;
+  color: #333;
+}
+
+.app-container {
+  display: flex;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 2rem;
+}
+
+/* Add more styles as you build */
+h1, h2 {
+    color: #1a237e;
+}
+
+.card {
+  position: relative; /* pseudo-element इसी card तक limited रहे */
+  background-color: #000;
+  background-image: 
+    url('https://www.transparenttextures.com/patterns/stardust.png'),
+    radial-gradient(ellipse at center, rgba(7, 23, 64, 1) 0%, rgba(0, 0, 0, 1) 100%);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  overflow: hidden; /* ताकि animation बाहर न निकले */
+}
+
+/* ✨ animated stars layer inside card */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: transparent url("https://www.transparenttextures.com/patterns/stardust.png") repeat;
+  opacity: 0.5;
+  animation: moveStars 40s linear infinite; /* same animation but faster */
+  z-index: 0;
+  border-radius: inherit; /* card की rounded corners follow करे */
+}
+
+/* card का text/content ऊपर दिखे */
+.card * {
+  position: relative;
+  z-index: 1;
+}
+
+/* वही stars animation (already defined for body) */
+@keyframes moveStars {
+  from { background-position: 0 0; }
+  to   { background-position: 800px 800px; }
+}
+
+
+/* Find the .app-container rule and remove display: flex; */
+.app-container {
+  display: flex;
+}
+
+/* main-content pehle se hi theek hai, usmein padding honi chahiye */
+.main-content {
+  padding: 2rem;
+}

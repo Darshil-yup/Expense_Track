@@ -1,0 +1,92 @@
+/* src/components/RecentExpenses.css */
+.expenses-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.expenses-table th, .expenses-table td {
+    padding: 0.8rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+.expenses-table th {
+    background-color: #f7f7f7;
+}
+.delete-btn {
+    background: #e91e63;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.delete-btn:hover {
+    background: #c2185b;
+}
+.expense-form-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 500px;
+  margin: 2rem auto;
+}
+
+.expense-form-page input, 
+.expense-form-page select, 
+.expense-form-page button {
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.expense-form-page button {
+  background-color: #3f51b5;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  border: none;
+}
+
+.expense-form-page button:hover {
+  background-color: #1a237e;
+}
+
+/* Add this CSS to your existing file */
+.expense-summary {
+  display: flex;
+  justify-content: space-around;
+  background-color: #f7f9fc;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.summary-item span {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.summary-item p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1a237e;
+  margin: 0.25rem 0 0 0;
+}
+/* Add this CSS to your existing file */
+.summary-description {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #333;
+  margin: 0.5rem 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.summary-amount {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1a237e;
+  margin: 0;
+}

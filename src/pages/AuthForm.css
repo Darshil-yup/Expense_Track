@@ -1,0 +1,145 @@
+/* Animated Gradient Background */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 1rem;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(45deg, #1a237e, #3f51b5, #283593, #5c6bc0);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.auth-form-card {
+  background: white;
+  padding: 3rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  z-index: 2; /* Keep form above shapes */
+}
+
+.auth-form-card h2 {
+  margin-top: 0;
+  color: #1a237e;
+}
+
+.auth-form-card p {
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.auth-form input {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.auth-form button {
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #3f51b5;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.auth-form button:hover {
+  background-color: #1a237e;
+}
+
+.auth-form-card span {
+  display: block;
+  margin-top: 1.5rem;
+  color: #777;
+}
+
+.auth-form-card span a {
+  color: #3f51b5;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Floating Shapes Animation */
+.floating-shape {
+  position: absolute;
+  display: block;
+  list-style: none;
+  background: rgba(255, 255, 255, 0.15);
+  animation: floatAnimation 25s linear infinite;
+  bottom: -150px;
+  z-index: 1;
+}
+
+.shape1 { left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
+.shape2 { left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
+.shape3 { left: 70%; width: 60px; height: 60px; animation-delay: 4s; }
+
+@keyframes floatAnimation {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 0; }
+  100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 50%; }
+}
+
+/* Entrance Animation */
+.animate-fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.login-page-container {
+ display: flex;
+ width: 100vw;
+ height: 100vh;
+ overflow: hidden; /* To prevent scrollbars if the Spline scene is large */
+}
+
+.spline-container {
+ flex: 1; /* Takes up remaining space */
+ width: 50%; /* Adjust as needed */
+ height: 100%;
+}
+
+.login-form-wrapper {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ width: 50%; /* Adjust as needed */
+ height: 100%;
+ background-color: rgba(0, 0, 0, 0.1); /* Optional overlay background */
+}
+
+.auth-form-card {
+ /* Your existing form card styles */
+ background: white;
+ padding: 2rem;
+ border-radius: 8px;
+ box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+ max-width: 400px;
+ width: 100%;
+}
+
+/* Adjust other form styles as necessary */

@@ -1,0 +1,90 @@
+/* 🌌 Full page stardust + radial gradient background */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  min-height: 100vh;
+  background-color: #000;
+  background-image: 
+    url('https://www.transparenttextures.com/patterns/stardust.png'),
+    radial-gradient(ellipse at center, rgba(7, 23, 64, 1) 0%, rgba(0, 0, 0, 1) 100%);
+}
+
+/* ✨ Animated stars layer */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: transparent url("https://www.transparenttextures.com/patterns/stardust.png") repeat;
+  opacity: 0.6;
+  animation: moveStars 60s linear infinite;
+  z-index: -1;
+}
+
+/* Animation to slowly move stars */
+@keyframes moveStars {
+  from { 
+    background-position: 0 0;
+   }
+  to   { 
+    background-position: 1000px 1000px; 
+  }
+}
+
+/* 🌌 Dashboard */
+.dashboard {
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: #000;
+  background-image: 
+    url("https://www.transparenttextures.com/patterns/stardust.png"),
+    radial-gradient(ellipse at center, rgba(7, 23, 64, 1) 0%, rgba(0, 0, 0, 1) 100%);
+  transition: background-color 0.5s ease;
+  color: #fff;
+}
+
+/* 📊 Dashboard grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* 🎴 Common Card Styles */
+.total-expenses-card,
+.chart-container {
+  background-color: #000;
+  background-image: 
+    url("https://www.transparenttextures.com/patterns/stardust.png"),
+    radial-gradient(ellipse at center, rgba(7, 23, 64, 1) 0%, rgba(0, 0, 0, 1) 100%);
+  border: 2px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+  color: #fff;
+  backdrop-filter: blur(6px);
+}
+
+/* 📌 Total Expenses Card */
+.total-expenses-card h2 {
+  color: rgb(55, 73, 120);
+  font-size: 1.2rem;
+  
+  margin: 0;
+}
+
+.total-expenses-card p {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+  color:rgba(7, 23, 64, 1)/* Yellow so it pops against dark background */
+}
+
+/* 📈 Chart Container */
+.chart-container h3 {
+  margin: 0;
+  font-weight: 600;
+  text-align: center;
+  color: #4fc3f7; /* Light blue for charts */
+}
