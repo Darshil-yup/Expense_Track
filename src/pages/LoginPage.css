@@ -1,139 +1,49 @@
-.login-page-wrapper {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  font-family: 'Poppins', sans-serif;
-  display: flex; /* Added to help center the form */
-  justify-content: center; /* Added to help center the form */
-  align-items: center; /* Added to help center the form */
-}
-
-/* This is the main container for the animation and the form */
-.form-column {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(45deg, #1a237e, #3f51b5);
-  overflow: hidden;
-}
-
-.auth-form-card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 3rem;
-  border-radius: 16px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  max-width: 420px;
-  text-align: center;
-  z-index: 2; /* Ensure form is above background */
-}
-
-.auth-form-card h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-top: 0;
-  color: #ffffff;
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-}
-
-.auth-form-card p {
-  color: #c5cae9;
-  margin-bottom: 2.5rem;
-}
-
-.auth-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-}
-
-.auth-form input {
-  padding: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
-  font-size: 1rem;
-  font-family: 'Poppins', sans-serif;
-  background: transparent;
-  color: white;
-}
-.auth-form input::placeholder {
-  color: #c5cae9;
-}
-
-.auth-form button {
-  padding: 1rem;
+/* Button Base */
+.cta-button {
+  padding: 12px 28px;
+  margin: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 30px;
   border: none;
-  border-radius: 8px;
-  background-color: #ff8f00;
-  color: white;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.auth-form button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(255, 143, 0, 0.4);
-}
-
-.form-footer {
-  display: block;
-  margin-top: 1.5rem;
-  color: #c5cae9;
-}
-
-.form-footer a {
-  color: #ff8f00;
   text-decoration: none;
-  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  transition: all 0.3s ease-in-out;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
 }
 
-/* --- Animated Background Shapes --- */
-.background-shapes {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
+/* Secondary Button */
+.cta-button.secondary {
+  background: linear-gradient(135deg, #ff512f, #dd2476);
 }
 
-.shape {
-  position: absolute;
-  display: block;
-  list-style: none;
-  width: 20px;
-  height: 20px;
-  background: rgba(255, 255, 255, 0.2);
-  animation: float 25s linear infinite;
-  bottom: -150px;
-  border-radius: 50%;
+/* Hover Animation */
+.cta-button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
 }
 
-.shape:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
-.shape:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
-.shape:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
-.shape:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; }
-.shape:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-delay: 0s; }
-.shape:nth-child(6) { left: 75%; width: 110px; height: 110px; animation-delay: 3s; }
-.shape:nth-child(7) { left: 35%; width: 150px; height: 150px; animation-delay: 7s; }
-.shape:nth-child(8) { left: 50%; width: 25px; height: 25px; animation-delay: 15s; animation-duration: 45s; }
-.shape:nth-child(9) { left: 20%; width: 15px; height: 15px; animation-delay: 2s; animation-duration: 35s; }
-.shape:nth-child(10) { left: 85%; width: 150px; height: 150px; animation-delay: 0s; animation-duration: 11s; }
+/* Entry Animation */
+.animate-btn {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: slideUp 0.8s forwards;
+}
 
-@keyframes float {
-  0% {
-    transform: translateY(0) rotate(0deg);
+.animate-btn:nth-child(1) {
+  animation-delay: 0.3s;
+}
+.animate-btn:nth-child(2) {
+  animation-delay: 0.6s;
+}
+
+@keyframes slideUp {
+  to {
     opacity: 1;
-  }
-  100% {
-    transform: translateY(-1000px) rotate(720deg);
-    opacity: 0;
+    transform: translateY(0);
   }
 }

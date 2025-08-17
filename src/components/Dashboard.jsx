@@ -14,7 +14,6 @@ const Dashboard = ({ expenses }) => {
       <div>
         <h1>Dashboard</h1>
         <div className="card"><h2>No expenses recorded yet.</h2></div>
-        <div><h3>Arsad is madarchod </h3></div>
       </div>
     );
   }
@@ -30,11 +29,11 @@ const Dashboard = ({ expenses }) => {
       </div>
 
       <div className="dashboard-grid">
-        <CategoryPieChart expenses={expenses} />
-        <DailyBarChart expenses={expenses} />
-        <TrendLineChart expenses={expenses} />
-        <AmountScatterPlot expenses={expenses} />
-        <AmountHistogram expenses={expenses} />
+        <div className="card chart-container"><CategoryPieChart expenses={expenses} /></div>
+        <div className="card chart-container"><DailyBarChart expenses={expenses} /></div>
+        <div className="card chart-container"><TrendLineChart expenses={expenses} /></div>
+        <div className="card chart-container"><AmountScatterPlot expenses={expenses} /></div>
+        <div className="card chart-container"><AmountHistogram expenses={expenses} /></div>
       </div>
     </div>
   );

@@ -23,12 +23,8 @@ body::before {
 
 /* Animation to slowly move stars */
 @keyframes moveStars {
-  from { 
-    background-position: 0 0;
-   }
-  to   { 
-    background-position: 1000px 1000px; 
-  }
+  from { background-position: 0 0; }
+  to   { background-position: 1000px 1000px; }
 }
 
 /* 🌌 Dashboard */
@@ -51,9 +47,8 @@ body::before {
   margin-top: 2rem;
 }
 
-/* 🎴 Common Card Styles */
-.total-expenses-card,
-.chart-container {
+/* 🎴 Universal Card Style with Softer Neon Shadow */
+.card {
   background-color: #000;
   background-image: 
     url("https://www.transparenttextures.com/patterns/stardust.png"),
@@ -61,16 +56,30 @@ body::before {
   border: 2px solid rgba(255,255,255,0.1);
   border-radius: 16px;
   padding: 1.5rem;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.6);
   color: #fff;
   backdrop-filter: blur(6px);
+
+  /* 🌟 Softer Neon Shadow */
+  box-shadow: 
+    0 0 10px rgba(79, 195, 247, 0.4),
+    0 0 20px rgba(55, 73, 120, 0.4),
+    0 0 40px rgba(79, 195, 247, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Hover Effect (slightly stronger glow on hover) */
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 0 15px rgba(79, 195, 247, 0.5),
+    0 0 30px rgba(55, 73, 120, 0.5),
+    0 0 50px rgba(79, 195, 247, 0.4);
 }
 
 /* 📌 Total Expenses Card */
 .total-expenses-card h2 {
-  color: rgb(55, 73, 120);
+  color: #4FC3F7;
   font-size: 1.2rem;
-  
   margin: 0;
 }
 
@@ -78,7 +87,7 @@ body::before {
   font-size: 2.2rem;
   font-weight: bold;
   margin-top: 0.5rem;
-  color:rgba(7, 23, 64, 1)/* Yellow so it pops against dark background */
+  color:#1a237e;
 }
 
 /* 📈 Chart Container */

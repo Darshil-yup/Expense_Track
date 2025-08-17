@@ -1,32 +1,33 @@
-/* .navbar {
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-    background-color: #000;
-   background-image: 
+  background-color: #000;
+  background-image: 
     url('https://www.transparenttextures.com/patterns/stardust.png'),
     radial-gradient(ellipse at center, rgb(2, 15, 46) 0%, rgb(0, 1, 8) 100%);
   padding: 0 2rem;
   height: 70px;
   color: white;
-  font-family: 'Libertinus', serif;
+  font-family: 'Poppins', sans-serif; /* Changed for a more modern feel */
   transition: all 0.4s ease;
   animation: slideDown 0.6s ease-out;
-} */
-
-
+  }
 
 /* When scrolled */
 .navbar.scrolled {
-  background: #0d133c;
+  background: rgba(13, 19, 60, 0.9);
+  backdrop-filter: blur(10px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .navbar-brand {
   font-size: 1.5rem;
   font-weight: bold;
-  color: white;
+  color: #fff;
   text-decoration: none;
+  /* Neon glow for the brand */
+  text-shadow: 0 0 8px rgba(0, 229, 255, 0.8);
 }
 
 .navbar-links {
@@ -42,24 +43,27 @@
   text-decoration: none;
   padding: 0.5rem 0;
   position: relative;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-/* Hover underline animation */
+/* Neon Glow Hover Effect */
+.navbar-links li a:hover {
+  color: whitesmoke;
+  text-shadow: 0 0 5px #858e8f, 0 0 10px #99a8aa;
+}
+
+/* Underline animation */
 .navbar-links li a::after {
   content: '';
   position: absolute;
   bottom: -5px;
   left: 0;
   width: 0%;
-  height: 3px;
-  background-color: #ff8f00;
+  height: 2px;
+  /* Neon color for the underline */
+  background-color: #00e5ff; 
   border-radius: 2px;
   transition: width 0.3s ease;
-}
-
-.navbar-links li a:hover {
-  color: white;
 }
 
 .navbar-links li a:hover::after {
@@ -68,14 +72,15 @@
 
 /* Active page link */
 .navbar-links li a.active {
-  color: white;
+  color: #bbc4c5;
   font-weight: bold;
+  text-shadow: 0 0 5px #999fa0;
 }
 
 .navbar-links li a.active::after {
   width: 100%;
-  height: 3px;
-  background-color: #ff8f00;
+  height: 2px;
+  background-color: #00e5ff;
   border-radius: 2px;
 }
 
@@ -88,18 +93,3 @@
     transform: translateY(0);
   }
 }
-
-.navbar a {
-  color: #fff;
-  margin: 0 1rem;
-  text-decoration: none;
-  font-weight: 500;
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-/* Neon Glow Hover
-.navbar a:hover {
-  color: #00e5ff;
-  text-shadow: 0 0 5px #00e5ff, 0 0 10px #00e5ff, 0 0 20px #00e5ff;
-} */

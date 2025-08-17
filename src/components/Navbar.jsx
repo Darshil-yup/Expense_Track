@@ -34,8 +34,8 @@ const Navbar = () => {
       </NavLink>
       <ul className="navbar-links">
         <li><NavLink to="/dashboard">Dashboard</NavLink></li>
-        <li><NavLink to="/expenses">All Expenses- darshil</NavLink></li>
-        <li><NavLink to="/add-expense">Add Expense-Sujal</NavLink></li>
+        <li><NavLink to="/expenses">All Expenses</NavLink></li>
+        <li><NavLink to="/add-expense">Add Expense</NavLink></li>
         <li><NavLink to="/investments">Investments</NavLink></li>
         <li><NavLink to="/profile">Profile</NavLink></li>
       </ul>

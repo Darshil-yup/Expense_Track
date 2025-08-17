@@ -9,7 +9,7 @@
     border-bottom: 1px solid #eee;
 }
 .expenses-table th {
-    background-color: #f7f7f7;
+    background-color: black;
 }
 .delete-btn {
     background: #e91e63;
@@ -55,7 +55,7 @@
 .expense-summary {
   display: flex;
   justify-content: space-around;
-  background-color: #f7f9fc;
+  background-color: radial-gradient(ellipse at center, rgba(7, 23, 64, 1));
   padding: 1rem;
   border-radius: 8px;
   margin-bottom: 1.5rem;
@@ -64,7 +64,8 @@
 
 .summary-item span {
   font-size: 0.9rem;
-  color: #555;
+  color: #4FC3F7;
+  font-weight: bold;
 }
 
 .summary-item p {
