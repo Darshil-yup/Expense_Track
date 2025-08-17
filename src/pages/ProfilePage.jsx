@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import './ProfilePage.css';
+import ProfileCard from './ProfileCard'; // Import the new animated card
+import './ProfilePage.css'; // Your original styles for the container/form
+import './ProfileCard.css'; // The new styles for the card itself
 
 const ProfilePage = ({ user, onLogout, onUpdateUser }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [profileImage, setProfileImage] = useState('');
+  // 1. Initial state changed to null
+  const [profileImage, setProfileImage] = useState(null);
 
   useEffect(() => {
     if (user) {
       setName(user.name);
       setEmail(user.email);
+      // Use the Dicebear API for a fallback avatar
       setProfileImage(user.profileImage || `https://api.dicebear.com/8.x/initials/svg?seed=${user.name}`);
     }
   }, [user]);
@@ -52,29 +56,41 @@ const ProfilePage = ({ user, onLogout, onUpdateUser }) => {
 
   return (
     <div className="profile-container">
-      <div className="profile-card">
-        <img src={profileImage} alt="Profile" className="profile-picture" />
-        
-        {isEditing ? (
+      {isEditing ? (
+        // --- EDITING MODE ---
+        // This uses your original form and styles
+        <div className="profile-card edit-view">
+          {/* 2. Image is now conditionally rendered */}
+          {profileImage && <img src={profileImage} alt="Profile" className="profile-picture" />}
           <div className="edit-form">
             <label htmlFor="profileImageInput" className="image-upload-label">Change Photo</label>
             <input id="profileImageInput" type="file" accept="image/*" onChange={handleImageChange} />
-            
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-            <input type="email" value={email} disabled /> {/* Email is usually not editable */}
-            
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Full Name" />
+            <input type="email" value={email} disabled />
             <button onClick={handleSave} className="save-button">Save</button>
             <button onClick={() => setIsEditing(false)} className="cancel-button">Cancel</button>
           </div>
-        ) : (
-          <div className="display-view">
-            <h2 className="profile-name">{user.name}</h2>
-            <p className="profile-email">{user.email}</p>
-            <button onClick={() => setIsEditing(true)} className="edit-button">Edit Profile</button>
-            <button onClick={handleLogout} className="logout-button">Logout</button>
-          </div>
-        )}
-      </div>
+        </div>
+      ) : (
+        // --- DISPLAY MODE ---
+        // This renders the new animated ProfileCard
+        <div className="display-container">
+          <ProfileCard
+            name={user.name}
+            title={user.title || "User"}
+            handle={user.email}
+            status="Online"
+            contactText="Logout"
+            avatarUrl={profileImage}
+            onContactClick={handleLogout}
+            enableTilt={true}
+          />
+          {/* We add our own Edit button outside the card */}
+          <button onClick={() => setIsEditing(true)} className="edit-button-main">
+            Edit Profile
+          </button>
+        </div>
+      )}
     </div>
   );
 };
