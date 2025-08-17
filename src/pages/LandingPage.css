@@ -11,8 +11,7 @@
   /* === THIS IS THE MAIN CHANGE === */
   /* We are adding a dark overlay on top of the background image */
   background: 
-    linear-gradient(rgba(26, 35, 126, 0.85), rgba(63, 81, 181, 0.85)), 
-    url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1911&auto=format&fit=crop');
+    url('https://wallpapercave.com/wp/wp9066654.jpg?q=80&w=1911&auto=format&fit=crop');
   
   background-size: cover;
   background-position: center;
