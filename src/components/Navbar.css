@@ -1,4 +1,4 @@
-.navbar {
+/* .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -12,7 +12,7 @@
   font-family: 'Libertinus', serif;
   transition: all 0.4s ease;
   animation: slideDown 0.6s ease-out;
-}
+} */
 
 
 
@@ -98,8 +98,8 @@
   transition: all 0.3s ease;
 }
 
-/* Neon Glow Hover */
+/* Neon Glow Hover
 .navbar a:hover {
   color: #00e5ff;
   text-shadow: 0 0 5px #00e5ff, 0 0 10px #00e5ff, 0 0 20px #00e5ff;
-}
+} */
